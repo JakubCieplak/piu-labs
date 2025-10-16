@@ -1,0 +1,219 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+body > h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+body > nav {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+body > nav ul {
+  list-style: none;
+}
+
+body > nav li {
+  margin: 15px 0;
+}
+
+body > nav a {
+  display: block;
+  padding: 12px 20px;
+  background: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  text-align: center;
+  font-weight: 500;
+}
+
+body > nav a:hover {
+  background: #2980b9;
+}
+
+.back-link {
+  display: block;
+  text-align: center;
+  color: #3498db;
+  text-decoration: none;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 2em;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #555;
+  font-size: 16px;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.login-form button[type="submit"] {
+  padding: 12px 24px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.login-form button[type="submit"]:hover {
+  background: #2980b9;
+}
+
+.page-nav {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.page-nav a {
+  color: #3498db;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.page-nav a:hover {
+  text-decoration: underline;
+}
+
+.uwagi-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.uwagi-container header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.uwagi-container h1 {
+  color: #2c3e50;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+article {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+section {
+  margin-bottom: 35px;
+}
+
+section:last-child {
+  margin-bottom: 0;
+}
+
+h2 {
+  color: #2c3e50;
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 8px;
+}
+
+p {
+  margin-bottom: 15px;
+  color: #555;
+  text-align: justify;
+}
+
+ul {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+li {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+strong {
+  color: #2c3e50;
+}
+
+code {
+  background: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+footer {
+  margin-top: 30px;
+}
