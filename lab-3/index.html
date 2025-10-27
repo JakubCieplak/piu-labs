@@ -4,9 +4,67 @@
     <meta charset="UTF-8" />
     <title>Lab 3</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/polo.css" />
   </head>
   <body>
     <h1>Lab 3</h1>
     <a href="..">Powrót</a>
+
+    <div class="product-card">
+      <div class="product-image-container">
+        <div class="product-image" role="img" aria-label="Koszulka Polo"></div>
+      </div>
+
+      <div class="product-info">
+        <div class="product-header">
+          <h2>Koszulka Polo</h2>
+          <span class="promo-badge">Promocja!</span>
+        </div>
+
+        <p class="product-description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quis adipisci maiores.
+        </p>
+
+        <div class="product-options">
+          <h3>Kolor</h3>
+          <div class="color-options">
+            <input type="radio" name="color" id="color-blue" value="blue" checked>
+            <label for="color-blue" class="color-button color-blue"></label>
+
+            <input type="radio" name="color" id="color-red" value="red">
+            <label for="color-red" class="color-button color-red"></label>
+
+            <input type="radio" name="color" id="color-green" value="green">
+            <label for="color-green" class="color-button color-green"></label>
+
+            <input type="radio" name="color" id="color-yellow" value="yellow">
+            <label for="color-yellow" class="color-button color-yellow"></label>
+          </div>
+        </div>
+
+        <div class="product-options">
+          <h3>Rozmiar</h3>
+          <div class="size-options">
+            <input type="radio" name="size" id="size-s" value="S">
+            <label for="size-s" class="size-button">S</label>
+
+            <input type="radio" name="size" id="size-m" value="M" checked>
+            <label for="size-m" class="size-button">M</label>
+
+            <input type="radio" name="size" id="size-l" value="L">
+            <label for="size-l" class="size-button">L</label>
+
+            <input type="radio" name="size" id="size-xl" value="XL">
+            <label for="size-xl" class="size-button">XL</label>
+          </div>
+        </div>
+
+        <div class="product-price">59,99 zł</div>
+
+        <button class="add-to-cart">
+          <span class="cart-icon">🛒</span> Do koszyka
+        </button>
+      </div>
+    </div>
   </body>
 </html>
