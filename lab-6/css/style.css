@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#btn-fetch {
+    background: #4CAF50;
+    color: white;
+}
+
+#btn-error {
+    background: #f44336;
+    color: white;
+}
+
+#btn-reset {
+    background: #2196F3;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.error {
+    background: #ffebee;
+    color: #c62828;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.error.visible {
+    display: block;
+}
+
+.loader {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    display: none;
+}
+
+.loader.visible {
+    display: block;
+}
+
+.list {
+    list-style: none;
+}
+
+.list li {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.list li:last-child {
+    border-bottom: none;
+}
+
+.list li strong {
+    display: block;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.list li span {
+    color: #666;
+    font-size: 14px;
+}
