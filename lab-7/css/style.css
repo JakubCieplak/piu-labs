@@ -16,11 +16,32 @@ h1 {
     margin-bottom: 30px;
 }
 
-.products-grid {
+.shop-layout {
     display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    justify-content: center;
+    gap: 30px;
     max-width: 1400px;
     margin: 0 auto;
+    align-items: flex-start;
+}
+
+product-list {
+    flex: 1;
+}
+
+shopping-cart {
+    position: sticky;
+    top: 20px;
+}
+
+@media (max-width: 900px) {
+    .shop-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    shopping-cart {
+        position: static;
+        width: 100%;
+        max-width: 320px;
+    }
 }

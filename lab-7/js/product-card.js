@@ -2,16 +2,62 @@ class ProductCard extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.render();
+        this._product = null;
+        this._selectedColor = null;
+        this._selectedSize = null;
+    }
+
+    static get observedAttributes() {
+        return ['name', 'price', 'image', 'colors', 'sizes', 'promo'];
     }
 
     connectedCallback() {
-        this.shadowRoot.querySelector('.add-to-cart').addEventListener('click', () => {
-            alert('Dodano do koszyka!');
+        if (!this._product) {
+            this.updateProductFromAttributes();
+        }
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue !== newValue) {
+            this.updateProductFromAttributes();
+        }
+    }
+
+    set product(value) {
+        this._product = value;
+        this._selectedColor = value.colors?.[0] || null;
+        this._selectedSize = value.sizes?.[0] || null;
+        this.render();
+    }
+
+    get product() {
+        return this._product;
+    }
+
+    selectColor(color) {
+        this._selectedColor = color;
+        this.updateSelection();
+    }
+
+    selectSize(size) {
+        this._selectedSize = size;
+        this.updateSelection();
+    }
+
+    updateSelection() {
+        this.shadowRoot.querySelectorAll('.color-dot').forEach(dot => {
+            dot.classList.toggle('selected', dot.dataset.color === this._selectedColor);
+        });
+        this.shadowRoot.querySelectorAll('.size-badge').forEach(badge => {
+            badge.classList.toggle('selected', badge.dataset.size === this._selectedSize);
         });
     }
 
     render() {
+        if (!this._product) return;
+
+        const { name, price, image, colors, sizes, promo } = this._product;
+
         this.shadowRoot.innerHTML = `
             <style>
                 :host {
@@ -37,20 +83,16 @@ class ProductCard extends HTMLElement {
                     position: relative;
                 }
 
-                ::slotted([slot="image"]) {
+                .image-container img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                 }
 
-                .promo-container {
+                .promo-badge {
                     position: absolute;
                     top: 10px;
                     right: 10px;
-                }
-
-                ::slotted([slot="promo"]) {
-                    display: inline-block;
                     background: #e53935;
                     color: white;
                     padding: 4px 12px;
@@ -63,25 +105,18 @@ class ProductCard extends HTMLElement {
                     padding: 16px;
                 }
 
-                .name-container {
+                .name {
                     margin: 0 0 8px 0;
-                }
-
-                ::slotted([slot="name"]) {
                     font-size: 18px;
                     font-weight: 600;
                     color: #333;
-                    margin: 0;
                 }
 
-                .price-container {
-                    margin-bottom: 12px;
-                }
-
-                ::slotted([slot="price"]) {
+                .price {
                     font-size: 22px;
                     font-weight: 700;
                     color: #2e7d32;
+                    margin-bottom: 12px;
                 }
 
                 .options {
@@ -98,23 +133,51 @@ class ProductCard extends HTMLElement {
                     margin-bottom: 6px;
                 }
 
-                .colors-container, .sizes-container {
+                .color-list, .size-list {
                     display: flex;
                     gap: 8px;
                     flex-wrap: wrap;
                     margin-top: 6px;
                 }
 
-                ::slotted([slot="colors"]) {
-                    display: flex;
-                    gap: 8px;
-                    flex-wrap: wrap;
+                .color-dot {
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
+                    border: 2px solid #ddd;
+                    cursor: pointer;
+                    transition: transform 0.15s, border-color 0.15s;
                 }
 
-                ::slotted([slot="sizes"]) {
-                    display: flex;
-                    gap: 8px;
-                    flex-wrap: wrap;
+                .color-dot:hover {
+                    transform: scale(1.1);
+                }
+
+                .color-dot.selected {
+                    border-color: #1976d2;
+                    box-shadow: 0 0 0 2px #1976d2;
+                }
+
+                .size-badge {
+                    padding: 6px 12px;
+                    background: #f5f5f5;
+                    border: 2px solid #ddd;
+                    border-radius: 6px;
+                    font-size: 13px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: all 0.15s;
+                }
+
+                .size-badge:hover {
+                    background: #e3f2fd;
+                    border-color: #90caf9;
+                }
+
+                .size-badge.selected {
+                    background: #1976d2;
+                    color: white;
+                    border-color: #1976d2;
                 }
 
                 button.add-to-cart {
@@ -140,38 +203,100 @@ class ProductCard extends HTMLElement {
             </style>
 
             <div class="image-container">
-                <slot name="image"></slot>
-                <div class="promo-container">
-                    <slot name="promo"></slot>
-                </div>
+                <img src="${image}" alt="${name}">
+                ${promo ? `<div class="promo-badge">${promo}</div>` : ''}
             </div>
 
             <div class="content">
-                <div class="name-container">
-                    <slot name="name"></slot>
-                </div>
-                <div class="price-container">
-                    <slot name="price"></slot>
-                </div>
+                <h2 class="name">${name}</h2>
+                <div class="price">${price} zł</div>
 
                 <div class="options">
-                    <div class="option-group">
-                        <div class="option-label">Kolor:</div>
-                        <div class="colors-container">
-                            <slot name="colors"></slot>
+                    ${colors && colors.length ? `
+                        <div class="option-group">
+                            <div class="option-label">Kolor:</div>
+                            <div class="color-list">
+                                ${colors.map((c, i) => `
+                                    <span class="color-dot ${i === 0 ? 'selected' : ''}"
+                                          style="background: ${c};"
+                                          data-color="${c}"></span>
+                                `).join('')}
+                            </div>
                         </div>
-                    </div>
-                    <div class="option-group">
-                        <div class="option-label">Rozmiar:</div>
-                        <div class="sizes-container">
-                            <slot name="sizes"></slot>
+                    ` : ''}
+                    ${sizes && sizes.length ? `
+                        <div class="option-group">
+                            <div class="option-label">Rozmiar:</div>
+                            <div class="size-list">
+                                ${sizes.map((s, i) => `
+                                    <span class="size-badge ${i === 0 ? 'selected' : ''}"
+                                          data-size="${s}">${s}</span>
+                                `).join('')}
+                            </div>
                         </div>
-                    </div>
+                    ` : ''}
                 </div>
 
                 <button class="add-to-cart">Do koszyka</button>
             </div>
         `;
+
+        this.shadowRoot.querySelectorAll('.color-dot').forEach(dot => {
+            dot.addEventListener('click', () => this.selectColor(dot.dataset.color));
+        });
+
+        this.shadowRoot.querySelectorAll('.size-badge').forEach(badge => {
+            badge.addEventListener('click', () => this.selectSize(badge.dataset.size));
+        });
+
+        this.shadowRoot.querySelector('.add-to-cart').addEventListener('click', () => {
+            this.dispatchEvent(new CustomEvent('add-to-cart', {
+                detail: {
+                    ...this._product,
+                    selectedColor: this._selectedColor,
+                    selectedSize: this._selectedSize
+                },
+                bubbles: true,
+                composed: true
+            }));
+        });
+    }
+
+    updateProductFromAttributes() {
+        const name = this.getAttribute('name');
+        const price = this.getAttribute('price');
+        const image = this.getAttribute('image');
+        const promo = this.getAttribute('promo');
+        const colors = this.parseListAttribute(this.getAttribute('colors'));
+        const sizes = this.parseListAttribute(this.getAttribute('sizes'));
+
+        if (!name && !price && !image && !colors.length && !sizes.length && !promo) {
+            return;
+        }
+
+        const parsedPrice = price ? parseFloat(price) : 0;
+
+        this.product = {
+            name: name || '',
+            price: Number.isNaN(parsedPrice) ? 0 : parsedPrice,
+            image: image || '',
+            colors,
+            sizes,
+            promo: promo || null
+        };
+    }
+
+    parseListAttribute(value) {
+        if (!value) return [];
+        try {
+            const parsed = JSON.parse(value);
+            if (Array.isArray(parsed)) {
+                return parsed;
+            }
+        } catch (e) {
+            // fall through to comma split
+        }
+        return value.split(',').map(item => item.trim()).filter(Boolean);
     }
 }
 
