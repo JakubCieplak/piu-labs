@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sklep z odzieżą - Lab 7</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .color-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .color-dot:hover {
+            transform: scale(1.1);
+        }
+        .size-badge {
+            padding: 6px 12px;
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .size-badge:hover {
+            background: #e3f2fd;
+            border-color: #90caf9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sklep z odzieżą</h1>
+
+    <div class="products-grid">
+        <product-card>
+            <img slot="image" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400" alt="T-shirt Basic">
+            <span slot="promo">-20%</span>
+            <h2 slot="name">T-shirt Basic</h2>
+            <span slot="price">79 zł</span>
+            <div slot="colors">
+                <span class="color-dot" style="background: #ffffff;"></span>
+                <span class="color-dot" style="background: #000000;"></span>
+                <span class="color-dot" style="background: #1a237e;"></span>
+            </div>
+            <div slot="sizes">
+                <span class="size-badge">S</span>
+                <span class="size-badge">M</span>
+                <span class="size-badge">L</span>
+                <span class="size-badge">XL</span>
+            </div>
+        </product-card>
+
+        <product-card>
+            <img slot="image" src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=400" alt="Jeansy Slim Fit">
+            <h2 slot="name">Jeansy Slim Fit</h2>
+            <span slot="price">199 zł</span>
+            <div slot="colors">
+                <span class="color-dot" style="background: #1a237e;"></span>
+                <span class="color-dot" style="background: #424242;"></span>
+            </div>
+            <div slot="sizes">
+                <span class="size-badge">30</span>
+                <span class="size-badge">32</span>
+                <span class="size-badge">34</span>
+                <span class="size-badge">36</span>
+            </div>
+        </product-card>
+
+        <product-card>
+            <img slot="image" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400" alt="Kurtka Bomber">
+            <span slot="promo">NOWOŚĆ</span>
+            <h2 slot="name">Kurtka Bomber</h2>
+            <span slot="price">449 zł</span>
+            <div slot="colors">
+                <span class="color-dot" style="background: #d2691e;"></span>
+                <span class="color-dot" style="background: #263238;"></span>
+                <span class="color-dot" style="background: #4e342e;"></span>
+            </div>
+            <div slot="sizes">
+                <span class="size-badge">M</span>
+                <span class="size-badge">L</span>
+                <span class="size-badge">XL</span>
+            </div>
+        </product-card>
+
+        <product-card>
+            <img slot="image" src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400" alt="Bluzka Ażurowa">
+            <h2 slot="name">Bluzka Ażurowa</h2>
+            <span slot="price">159 zł</span>
+            <div slot="colors">
+                <span class="color-dot" style="background: #f5f5dc;"></span>
+                <span class="color-dot" style="background: #e91e63;"></span>
+                <span class="color-dot" style="background: #00bcd4;"></span>
+            </div>
+            <div slot="sizes">
+                <span class="size-badge">XS</span>
+                <span class="size-badge">S</span>
+                <span class="size-badge">M</span>
+            </div>
+        </product-card>
+
+        <product-card>
+            <img slot="image" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400" alt="Bluza z Kapturem">
+            <span slot="promo">-30%</span>
+            <h2 slot="name">Bluza z Kapturem</h2>
+            <span slot="price">139 zł</span>
+            <div slot="colors">
+                <span class="color-dot" style="background: #9e9e9e;"></span>
+                <span class="color-dot" style="background: #000000;"></span>
+            </div>
+            <div slot="sizes">
+                <span class="size-badge">S</span>
+                <span class="size-badge">M</span>
+                <span class="size-badge">L</span>
+            </div>
+        </product-card>
+
+        <product-card>
+            <img slot="image" src="https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400" alt="Koszula Elegancka">
+            <h2 slot="name">Koszula Elegancka</h2>
+            <span slot="price">129 zł</span>
+            <div slot="colors">
+                <span class="color-dot" style="background: #ffffff;"></span>
+                <span class="color-dot" style="background: #e3f2fd;"></span>
+                <span class="color-dot" style="background: #fce4ec;"></span>
+            </div>
+            <div slot="sizes">
+                <span class="size-badge">S</span>
+                <span class="size-badge">M</span>
+                <span class="size-badge">L</span>
+                <span class="size-badge">XL</span>
+                <span class="size-badge">XXL</span>
+            </div>
+        </product-card>
+    </div>
+
+    <script src="js/product-card.js"></script>
+</body>
+</html>
